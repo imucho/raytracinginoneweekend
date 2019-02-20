@@ -1,0 +1,7 @@
+[package]
+name = "raytracinginoneweekend"
+version = "0.1.0"
+authors = ["imura_tatsuya <imura_tatsuya@cyberagent.co.jp>"]
+edition = "2018"
+
+[dependencies]
