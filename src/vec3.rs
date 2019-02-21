@@ -163,3 +163,17 @@ impl DivAssign<f32> for Vec3 {
         self.e[2] *= k; 
     }
 }
+
+impl Index<usize> for Vec3 {
+    type Output = f32;
+
+    fn index(&self, i: usize) -> &f32 {
+        &self.e[i]
+    }
+}
+
+impl IndexMut<usize> for Vec3 {
+    fn index_mut(&mut self, i: usize) -> &mut f32 {
+        &mut self.e[i]
+    }
+}
