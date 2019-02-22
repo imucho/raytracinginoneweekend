@@ -5,3 +5,4 @@ authors = ["imura_tatsuya <imura_tatsuya@cyberagent.co.jp>"]
 edition = "2018"
 
 [dependencies]
+rand = "0.6"
