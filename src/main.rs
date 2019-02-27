@@ -16,9 +16,22 @@ use sphere::Sphere;
 use camera::Camera;
 use rand::Rng;
 
+fn random_in_unit_sphere() -> Vec3 {
+    let mut rng = rand::thread_rng();
+    let mut p;
+    loop {
+        p = 2.0*Vec3::new(rng.gen_range(0.0,1.0), rng.gen_range(0.0,1.0), rng.gen_range(0.0,1.0)) - Vec3::new(1.0,1.0,1.0);
+        if p.squared_length() >= 1.0 {
+            break;
+        }
+    }
+    return p;
+}
+
 fn color(r: &Ray, world: &Hitable) -> Vec3 {
     if let Some(rec) = world.hit(r, 0.0, f32::MAX) {
-        return 0.5 * Vec3::new(rec.normal.x()+1.0, rec.normal.y()+1.0, rec.normal.z()+1.0);
+        let target = rec.p + rec.normal + random_in_unit_sphere();
+        return 0.5 * color(&Ray::new(rec.p, target-rec.p), world);
     } else {
         let unit_direction = Vec3::unit_vector(r.direction);
         let t = 0.5*(unit_direction.y() + 1.0);
